@@ -1,0 +1,52 @@
+name: ساخت خودکار صفحه‌ی آگهی‌ها
+
+# این workflow دقیقاً همون چیزیه که در راهنما.md بهش اشاره شده ولی توی
+# پروژه وجود نداشت — برای همین آگهی‌های جدید صفحه‌ی خودشون ساخته نمی‌شد.
+#
+# هر بار که چیزی به شاخه‌ی main پوش بشه (از جمله وقتی Cloudflare Worker
+# یک آگهی جدید به data/listings.json اضافه می‌کنه)، این workflow:
+#   ۱. ریپازیتوری رو چک‌اوت می‌کنه
+#   ۲. اسکریپت scripts/build.js رو اجرا می‌کنه (لینک‌سازی + ساخت صفحه‌ی
+#      HTML هر آگهی در ad/ + به‌روزرسانی sitemap.xml و robots.txt)
+#   ۳. اگه چیزی تغییر کرده باشه، همون تغییرات رو خودش کامیت و پوش می‌کنه
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-ads
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: چک‌اوت مخزن
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: نصب Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: اجرای build.js
+        run: node scripts/build.js
+
+      - name: کامیت و پوش تغییرات (در صورت وجود)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "ساخت خودکار صفحه‌ی آگهی‌ها [skip ci]"
+            git push
+          else
+            echo "چیزی برای کامیت نبود."
+          fi
