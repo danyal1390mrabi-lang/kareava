@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -20,7 +21,6 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
   :root{
     --teal-900:#0B3B3D;
@@ -302,7 +302,7 @@
         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
       </div>
 
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAEkN5MDtX1VUJ2wL" data-callback="onTurnstileOk" style="margin-bottom:14px;"></div>
+      <input type="hidden" id="formLoadedAt" value="">
 
       <div class="err" id="submitErr" style="display:none;margin-bottom:12px;"></div>
 
@@ -397,8 +397,8 @@ const CAT_LABELS = {
   health:'سلامت و پزشکی', other:'سایر مشاغل'
 };
 
-let turnstileToken = '';
-function onTurnstileOk(token){ turnstileToken = token; }
+let formLoadedAtMs = Date.now();
+document.getElementById('formLoadedAt').value = formLoadedAtMs;
 
 function toast(msg){
   const t = document.getElementById('toast');
@@ -455,11 +455,6 @@ document.getElementById('adForm').addEventListener('submit', async (e)=>{
 
   if(!valid){ toast('لطفاً فیلدهای الزامی را کامل کنید و اگر شماره خود را به زبان فارسی وارد کردید به اینگیلیسی تغیر دهید'); return; }
 
-  if(!turnstileToken){
-    toast('لطفاً چند لحظه صبر کن تا تأیید امنیتی صفحه کامل بشه');
-    return;
-  }
-
   if(imageFile && imageFile.size > 2 * 1024 * 1024){
     toast('حجم عکس نباید بیشتر از ۲ مگابایت باشه');
     return;
@@ -490,7 +485,7 @@ ${desc ? 'توضیحات: ' + desc + '\n' : ''}شماره تماس: ${phoneDigit
       price: isFree ? 0 : priceRaw.replace(/\D/g,''),
       desc, phone: phoneDigits,
       website, // هانی‌پات
-      turnstileToken
+      formLoadedAt: formLoadedAtMs
     };
     if(imageFile){
       payload.imageBase64 = await fileToBase64(imageFile);
