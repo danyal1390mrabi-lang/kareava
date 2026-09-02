@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ویدیوهای کار اوا | ویویو از تمام شغل ها</title>
+<meta name="description" content="ویدیوهای نمونه کار های مشاغل ها">
+<meta name="keywords" content=کار اوا, ویدیوهای تبلیغ کسب و کار,  های شما">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kareava.ir/videos.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="کار اوا">
+<meta property="og:title" content="ویدیوهای کار اوا">
+<meta property="og:description" content="ویدیوهای کار اوا برای تبلیغ کسب‌وکار و جذب مشتری بیشتر.">
+<meta property="og:url" content="https://kareava.ir/videos.html">
+<meta property="og:image" content="https://kareava.ir/logo-social.png">
+<meta property="og:locale" content="fa_IR">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-900:#0B3B3D;
+    --teal-700:#0E4F52;
+    --teal-500:#147A7E;
+    --teal-100:#DCEEEE;
+    --saffron:#E2A33D;
+    --saffron-dark:#C6871F;
+    --paper:#FBF7F1;
+    --paper-2:#F3EDE2;
+    --ink:#1E2623;
+    --muted:#6E7A76;
+    --line:#E4DFD3;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Vazirmatn',sans-serif;}
+  body{-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--saffron);color:var(--teal-900);}
+  a{color:inherit;text-decoration:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  }
+
+  /* ---------- Header (shared identity with کار اوا) ---------- */
+  header.site{position:sticky;top:0;z-index:40;background:var(--teal-900);color:var(--paper);}
+  .header-inner{
+    max-width:1180px;margin:0 auto;padding:14px 20px 16px;
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:-.2px;white-space:nowrap;}
+  .logo-img{width:28px;height:28px;object-fit:contain;display:inline-block;}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--saffron);display:inline-block;animation:dotPulse 2.4s ease-in-out infinite;}
+  @keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 rgba(226,163,61,.55);}50%{box-shadow:0 0 0 6px rgba(226,163,61,0);}}
+  .crumb{color:rgba(251,247,241,.6);font-size:14px;font-weight:500;}
+  .back-link{
+    margin-inline-start:auto;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;
+    color:var(--paper);padding:9px 14px;border-radius:9px;background:rgba(255,255,255,.1);transition:.18s;
+  }
+  .back-link:hover{background:rgba(255,255,255,.18);transform:translateY(-1px);}
+  .back-link svg{width:16px;height:16px;stroke:var(--saffron);}
+
+  .tile-divider{
+    height:9px;width:100%;
+    background-image:
+      linear-gradient(45deg, var(--teal-700) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--teal-700) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--teal-700) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--teal-700) 75%);
+    background-size:9px 9px;
+    background-position:0 0,0 4.5px,4.5px -4.5px,-4.5px 0;
+    background-color:var(--saffron);
+    opacity:.9;
+    animation:weave 5s linear infinite;
+  }
+  @keyframes weave{
+    from{background-position:0 0,0 4.5px,4.5px -4.5px,-4.5px 0;}
+    to{background-position:18px 0,18px 4.5px,22.5px -4.5px,13.5px 0;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{max-width:1180px;margin:0 auto;padding:34px 20px 6px;}
+  .hero h1{font-size:24px;font-weight:800;margin-bottom:8px;opacity:0;animation:fadeUp .6s ease .05s forwards;}
+  .hero p{color:var(--muted);font-size:14px;max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .6s ease .16s forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- Horizontal scroll carousel ---------- */
+  main{max-width:1180px;margin:0 auto;padding:10px 0 90px;}
+  .rail-head{display:flex;align-items:baseline;justify-content:space-between;padding:8px 20px 14px;}
+  .rail-head h2{font-size:16px;font-weight:700;}
+  .rail-head span{font-size:12.5px;color:var(--muted);}
+  .rail-wrap{position:relative;}
+  .rail{
+    display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 20px 18px;scrollbar-width:thin;scrollbar-color:var(--saffron) var(--paper-2);
+  }
+  .rail::-webkit-scrollbar{height:8px;}
+  .rail::-webkit-scrollbar-track{background:var(--paper-2);border-radius:8px;}
+  .rail::-webkit-scrollbar-thumb{background:var(--saffron);border-radius:8px;}
+
+  .video-card{
+    flex:0 0 320px;scroll-snap-align:start;
+    background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s;
+    opacity:0;transform:translateY(14px);animation:cardIn .5s ease forwards;
+  }
+  @keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+  .video-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px -14px rgba(14,79,82,.32);border-color:var(--teal-500);}
+  .video-frame{width:100%;aspect-ratio:16/9;background:var(--teal-900);position:relative;}
+  .video-frame iframe{width:100%;height:100%;border:0;display:block;}
+  .video-info{padding:14px 15px 16px;display:flex;flex-direction:column;gap:7px;}
+  .video-info h3{font-size:14.5px;font-weight:600;line-height:1.5;}
+  .video-info p{font-size:12.5px;color:var(--muted);line-height:1.8;}
+  .tag{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:4px;margin-top:2px;
+    padding:4px 10px;border-radius:999px;background:var(--teal-100);color:var(--teal-900);
+    font-size:11.5px;font-weight:600;
+  }
+
+  .rail-btn{
+    position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+    background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px -6px rgba(11,59,61,.3);cursor:pointer;z-index:5;transition:.18s;
+  }
+  .rail-btn:hover{border-color:var(--teal-500);transform:translateY(-50%) scale(1.06);}
+  .rail-btn svg{width:17px;height:17px;stroke:var(--teal-700);}
+  .rail-btn.prev{right:2px;}
+  .rail-btn.next{left:2px;}
+  @media (max-width:760px){ .rail-btn{display:none;} }
+
+  footer{max-width:1180px;margin:0 auto;padding:10px 20px 40px;color:var(--muted);font-size:12.5px;text-align:center;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <a class="logo" href="index.html"><img src="logo-icon-1024.png" alt="کار اوا" class="logo-img">کار اوا</a>
+    <span class="crumb">/ ویدیوها</span>
+    <a class="back-link" style="margin-inline-start:0;background:var(--saffron);color:var(--teal-900);" href="post-ad.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      معرفی رایگان کسب‌وکار
+    </a>
+    <a class="back-link" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      بازگشت به کار اوا
+    </a>
+  </div>
+  <div class="tile-divider"></div>
+</header>
+
+<div class="hero">
+  <h1>🎬 ویدیوهای کار اوا</h1>
+  <p>نمونه کار  ویدیویی برای داشتن اطمینان بیشتر</p>
+</div>
+
+<main>
+  <div class="rail-head">
+    <h2>همه ویدیوها</h2>
+    <span id="railCount"></span>
+  </div>
+  <div class="rail-wrap">
+    <button class="rail-btn prev" id="btnPrev" aria-label="قبلی">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="rail" id="rail"></div>
+    <button class="rail-btn next" id="btnNext" aria-label="بعدی">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+  </div>
+</main>
+
+<footer>کار اوا — بازارچه معرفی کسب‌وکار، اصناف و صاحبان حرفه در سراسر ایران</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "ویدیوهای  تبلیغ کسب‌وکار کار اوا",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"item":{"@type":"VideoObject","name":"راهنمای معرفی کسب‌وکار در کار اوا","description":"چطور کسب‌وکار یا حرفه خودتان را در کار اوا رایگان معرفی کنید.","thumbnailUrl":"https://kareava.ir/thumbs/v1.jpg","uploadDate":"2026-01-15"}},
+    {"@type":"ListItem","position":2,"item":{"@type":"VideoObject","name":"نکات جذب مشتری بیشتر برای صاحبان مشاغل","description":"چند نکته کاربردی برای جذب مشتری بیشتر از طریق آگهی آنلاین.","thumbnailUrl":"https://kareava.ir/thumbs/v2.jpg","uploadDate":"2026-01-20"}},
+    {"@type":"ListItem","position":3,"item":{"@type":"VideoObject","name":"عکاسی حرفه‌ای از نمونه‌کار با موبایل","description":"نکات کاربردی برای گرفتن عکس جذاب از نمونه‌کارهای کسب‌وکار.","thumbnailUrl":"https://kareava.ir/thumbs/v3.jpg","uploadDate":"2026-02-02"}}
+  ]
+}
+</script>
+
+<script>
+const VIDEOS = [
+  {id:'v1', cat:'howto', catLabel:' باربری اسباب چی حمل بار کارگر تخلیه بار اسباب کشی شعبه تهران', title:'ویدیو از کار اسباب کشی', desc:'09367642680', embed:'https://www.aparat.com/video/video/embed/videohash/yfk54b1/vt/frame'},
+  {id:'v2', cat:'marketing', catLabel:'باربری اسباب چی/شعبه مشهد افتتاح شد۱۰۰٪تضمینیVip', title:'ویدیو از کار اسباب کشی', desc:'۰۹۹۱۶۱۴۶۰۷۹', embed:'https://www.aparat.com/video/video/embed/videohash/jpa848q/vt/frame'},
+  {id:'v3', cat:'photo', catLabel:'تعمیرات نرده استیل حفاظ استیل حفاظ پنجره هندریل', title:'ویدیواز تعمیرات نرده', desc:'09357144111', embed:'https://www.aparat.com/video/video/embed/videohash/slh028y/vt/frame'},
+  {id:'v4', cat:'construction', catLabel:'گچ کاری ولکه گیری پذیرفته می‌شود', title:'ویدیویی از نمونه کار ', desc:'۰۹۰۳۶۷۳۵۰۴۰', embed:'https://www.aparat.com/video/video/embed/videohash/resp304/vt/frame'},
+  {id:'v5', cat:'marketing', catLabel:'یدک کش و امدادخودرو شبانه روزی 24ساعته درتمام نقاط', title:'ویدیو از یدک کش', desc:'۰۹۱۵۲۰۷۰۷۸۲', embed:'https://www.aparat.com/video/video/embed/videohash/nen4z8e/vt/frame'},
+  {id:'v6', cat:'howto', catLabel:'مبلمان قسطی کلاسیک و مدرن چستر اداری فروشگاهی', title:'ویدیویی  از ساخت مبل', desc:'09932058252 ', embed:'https://www.aparat.com/video/video/embed/videohash/pek324s/vt/frame'},
+  {id:'v7', cat:'howto', catLabel:'تعمیرتلویزیون پلاسماLED/LCDبا۳سال ضمانت درمنزل', title:'ویدیویی از تعمیرات', desc:'۰۹۱۳۱۵۲۹۳۹۰.', embed:'https://www.aparat.com/video/video/embed/videohash/gsl1517/vt/frame'},
+  {id:'v8', cat:'howto', catLabel:'آموزش کار اوا', title:'نوشتن توضیحات جذاب برای آگهی', desc:'چطور توضیحات کسب‌وکارتان را طوری بنویسید که مشتری را متقاعد کند.', embed:'https://www.aparat.com/video/video/embed/videohash/mkx1760/vt/frame'},
+  {id:'v9', cat:'howto', catLabel:'آموزش کار اوا', title:'نوشتن توضیحات جذاب برای آگهی', desc:'چطور توضیحات کسب‌وکارتان را طوری بنویسید که مشتری را متقاعد کند.', embed:'https://www.aparat.com/video/video/embed/videohash/mkx1760/vt/frame'},
+  {id:'v10', cat:'howto', catLabel:'آموزش کار اوا', title:'نوشتن توضیحات جذاب برای آگهی', desc:'چطور توضیحات کسب‌وکارتان را طوری بنویسید که مشتری را متقاعد کند.', embed:'https://www.aparat.com/video/video/embed/videohash/mkx1760/vt/frame'},
+];
+
+function renderRail(){
+  const rail = document.getElementById('rail');
+  document.getElementById('railCount').textContent = VIDEOS.length ? VIDEOS.length.toLocaleString('fa-IR') + ' ویدیو' : '';
+
+  rail.innerHTML = VIDEOS.map((v,i) => `
+    <article class="video-card" style="animation-delay:${Math.min(i*60,420)}ms">
+      <div class="video-frame">
+        <iframe src="${v.embed}" title="${v.title}" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <h3>${v.title}</h3>
+        <p>${v.desc}</p>
+        <span class="tag">${v.catLabel}</span>
+      </div>
+    </article>
+  `).join('');
+  rail.scrollTo({left:0});
+}
+
+document.getElementById('btnPrev').addEventListener('click', ()=>{
+  document.getElementById('rail').scrollBy({left: 340, behavior:'smooth'});
+});
+document.getElementById('btnNext').addEventListener('click', ()=>{
+  document.getElementById('rail').scrollBy({left: -340, behavior:'smooth'});
+});
+
+renderRail();
+</script>
+</body>
+</html>
