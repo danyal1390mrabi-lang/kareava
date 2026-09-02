@@ -1,26 +1,10 @@
-/**
- * worker.js — سرور واسط امن برای ثبت خودکار آگهی‌های مشتری‌ها
- * ----------------------------------------------------------------------
- * این فایل روی Cloudflare Workers اجرا میشه (نه روی سایت خودت). کارش:
- *   ۱. گرفتن اطلاعات آگهی از فرم عمومی سایت (post-ad.html)
- *   ۲. بررسی ضدِ اسپم (Cloudflare Turnstile + هانی‌پات)
- *   ۳. آپلود عکس (در صورت وجود) و افزودن آگهی به data/listings.json — مستقیم
- *      روی مخزن گیت‌هاب، با توکنی که فقط همینجا (پنهان و امن) نگه داشته میشه
- *
- * توکن گیت‌هاب هیچ‌وقت به مرورگر کاربر فرستاده نمیشه؛ فقط همینجا روی
- * سرورهای Cloudflare (به‌صورت رمزنگاری‌شده) ذخیره‌ست.
- * ----------------------------------------------------------------------
- * متغیرهای محیطی لازم (توی تنظیمات Worker باید ست بشن):
- *   GITHUB_TOKEN      - توکن دسترسی گیت‌هاب (Contents: Read & write)
- *   GITHUB_OWNER      - مثلاً danyal1390mrabi-lang
- *   GITHUB_REPO       - مثلاً karino
- *   GITHUB_BRANCH     - معمولاً main
- *   TURNSTILE_SECRET  - کلید مخفی Cloudflare Turnstile
- *   ALLOWED_ORIGIN    - آدرس سایتت، مثلاً https://kareava.ir
- */
 
 const LISTINGS_PATH = 'data/listings.json';
 const CATS = new Set(['construction','auto','beauty','tech','home','education','food','art','health','other']);
+
+// حداقل زمانی که باید بین لود شدن فرم و ارسال آن بگذرد (میلی‌ثانیه).
+// ربات‌های اسپم معمولاً فرم رو در کسری از ثانیه پر و ارسال می‌کنن.
+const MIN_FILL_TIME_MS = 2500;
 
 export default {
   async fetch(request, env) {
@@ -51,12 +35,12 @@ export default {
       return json({ success:true, url: null }, 200, corsHeaders); // به ربات نشون میدیم موفق بوده تا دوباره تلاش نکنه
     }
 
-    // ---- بررسی Turnstile (ضد اسپم) ----
-    if (env.TURNSTILE_SECRET) {
-      let ok = false;
-      try { ok = await verifyTurnstile(body.turnstileToken, env.TURNSTILE_SECRET, request); }
-      catch(e){ ok = false; }
-      if (!ok) return json({ success:false, error:'تأیید امنیتی ناموفق بود. لطفاً صفحه رو رفرش کن و دوباره تلاش کن.' }, 400, corsHeaders);
+    // ---- تله‌ی زمانی (ضد اسپم بدون وابستگی به سرویس خارجی) ----
+    // اگه فرم خیلی سریع‌تر از حالت انسانی ارسال شده باشه، مشکوک به رباته.
+    const loadedAt = Number(body.formLoadedAt);
+    if (!Number.isFinite(loadedAt) || (Date.now() - loadedAt) < MIN_FILL_TIME_MS) {
+      // ساکت رد می‌کنیم (نه با خطای واضح) تا ربات نفهمه دقیقاً چرا رد شده
+      return json({ success:true, url: null }, 200, corsHeaders);
     }
 
     // ---- اعتبارسنجی فیلدهای اصلی ----
@@ -129,17 +113,6 @@ function json(obj, status, extraHeaders){
 }
 function clean(v, maxLen){
   return String(v||'').trim().slice(0, maxLen);
-}
-async function verifyTurnstile(token, secret, request){
-  if(!token) return false;
-  const ip = request.headers.get('cf-connecting-ip') || '';
-  const form = new FormData();
-  form.append('secret', secret);
-  form.append('response', token);
-  if(ip) form.append('remoteip', ip);
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method:'POST', body: form });
-  const data = await res.json();
-  return !!data.success;
 }
 function utf8ToBase64(str){
   const bytes = new TextEncoder().encode(str);
